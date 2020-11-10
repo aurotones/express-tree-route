@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from "express";
+
 interface MethodFunction {
     get?: (any[] | any)[],
     post?: (any[] | any)[],
@@ -6,45 +8,55 @@ interface MethodFunction {
     delete?: (any[] | any)[],
 }
 
+interface MethodParams {
+    action: (req: Request, res: Response, next?: NextFunction) => Promise<Response<any>>,
+    handlers?: any[],
+}
+
 export default class Method {
-    public static get = (handlers, fn?): MethodFunction => {
+    public static get = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
         return {
-            get: [
-                handlers,
-                fn
-            ]
+            get: actions
         }
     };
-    public static post = (handlers, fn?): MethodFunction => {
+    public static post = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
         return {
-            post: [
-                handlers,
-                fn
-            ]
+            post: actions
         }
     };
-    public static patch = (handlers, fn?): MethodFunction => {
+    public static patch = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
         return {
-            patch: [
-                handlers,
-                fn
-            ]
+            patch: actions
         }
     };
-    public static put = (handlers, fn?): MethodFunction => {
+    public static put = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
         return {
-            put: [
-                handlers,
-                fn
-            ]
+            put: actions
         }
     };
-    public static delete = (handlers, fn?): MethodFunction => {
+    public static delete = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
         return {
-            delete: [
-                handlers,
-                fn
-            ]
+            delete: actions
         }
     };
 }

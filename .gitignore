@@ -1,4 +1,9 @@
 .idea
-/node_modules
+*.iml
 /build
-/dist
+node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
+.DS_Store
