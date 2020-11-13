@@ -20,7 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
-const methods = ["get", "post", "patch", "put", "delete"];
+const methods = ["get", "post", "patch", "put", "update", "delete"];
 function routePath(sourceDir, methodPath) {
     let filePath = methodPath.replace(/:\w+(\/|)/gi, "");
     filePath = filePath.replace(/\/$/, "");
@@ -106,4 +106,3 @@ function methodValid(func) {
     return valid;
 }
 exports.default = routePath;
-//# sourceMappingURL=RoutePath.js.map

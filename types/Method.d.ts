@@ -5,7 +5,12 @@ interface MethodFunction {
     post?: (any[] | any)[],
     patch?: (any[] | any)[],
     put?: (any[] | any)[],
+    head?: (any[] | any)[],
     delete?: (any[] | any)[],
+    options?: (any[] | any)[],
+    connect?: (any[] | any)[],
+    trace?: (any[] | any)[],
+    purge?: (any[] | any)[],
 }
 
 interface MethodParams {
@@ -13,12 +18,17 @@ interface MethodParams {
     handlers?: any[],
 }
 
-declare namespace Method {
-    function get(params: MethodParams): MethodFunction;
-    function post(params: MethodParams): MethodFunction;
-    function patch(params: MethodParams): MethodFunction;
-    function put(params: MethodParams): MethodFunction;
-    // function delete(params: MethodParams): MethodFunction;
+declare class Method {
+    static get(params: MethodParams): MethodFunction;
+    static post(params: MethodParams): MethodFunction;
+    static patch(params: MethodParams): MethodFunction;
+    static put(params: MethodParams): MethodFunction;
+    static head(params: MethodParams): MethodFunction;
+    static delete(params: MethodParams): MethodFunction;
+    static options(params: MethodParams): MethodFunction;
+    static connect(params: MethodParams): MethodFunction;
+    static trace(params: MethodParams): MethodFunction;
+    static purge(params: MethodParams): MethodFunction;
 }
 
 export default Method;

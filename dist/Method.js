@@ -39,6 +39,15 @@ Method.put = (params) => {
         put: actions
     };
 };
+Method.head = (params) => {
+    let actions = [params.action];
+    if (params.handlers) {
+        actions.unshift(params.handlers);
+    }
+    return {
+        head: actions
+    };
+};
 Method.delete = (params) => {
     let actions = [params.action];
     if (params.handlers) {
@@ -48,4 +57,39 @@ Method.delete = (params) => {
         delete: actions
     };
 };
-//# sourceMappingURL=Method.js.map
+Method.options = (params) => {
+    let actions = [params.action];
+    if (params.handlers) {
+        actions.unshift(params.handlers);
+    }
+    return {
+        options: actions
+    };
+};
+Method.connect = (params) => {
+    let actions = [params.action];
+    if (params.handlers) {
+        actions.unshift(params.handlers);
+    }
+    return {
+        connect: actions
+    };
+};
+Method.trace = (params) => {
+    let actions = [params.action];
+    if (params.handlers) {
+        actions.unshift(params.handlers);
+    }
+    return {
+        trace: actions
+    };
+};
+Method.purge = (params) => {
+    let actions = [params.action];
+    if (params.handlers) {
+        actions.unshift(params.handlers);
+    }
+    return {
+        purge: actions
+    };
+};

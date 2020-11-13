@@ -40,13 +40,18 @@ routes.js
 - See below example to configure API method in `login.js`, `get.js`, `post.js` files.
 
 You can declare your method like below.
-Currently delete missing.
 
 ```
 Method.get();
 Method.post();
 Method.put();
 Method.patch();
+Method.delete();
+Method.head();
+Method.option();
+Method.connect();
+Method.trace();
+Method.purge();
 ```
   
 Field `handlers` is optional. Can use any express middleware, handler or custom functions.

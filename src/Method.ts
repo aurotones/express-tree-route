@@ -5,8 +5,12 @@ interface MethodFunction {
     post?: (any[] | any)[],
     patch?: (any[] | any)[],
     put?: (any[] | any)[],
-    update?: (any[] | any)[],
+    head?: (any[] | any)[],
     delete?: (any[] | any)[],
+    options?: (any[] | any)[],
+    connect?: (any[] | any)[],
+    trace?: (any[] | any)[],
+    purge?: (any[] | any)[],
 }
 
 interface MethodParams {
@@ -51,13 +55,13 @@ export default class Method {
             put: actions
         }
     };
-    public static update = (params: MethodParams): MethodFunction => {
+    public static head = (params: MethodParams): MethodFunction => {
         let actions: Array<Function | Function[]> = [ params.action ];
         if (params.handlers){
             actions.unshift(params.handlers);
         }
         return {
-            update: actions
+            head: actions
         }
     };
     public static delete = (params: MethodParams): MethodFunction => {
@@ -67,6 +71,42 @@ export default class Method {
         }
         return {
             delete: actions
+        }
+    };
+    public static options = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
+        return {
+            options: actions
+        }
+    };
+    public static connect = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
+        return {
+            connect: actions
+        }
+    };
+    public static trace = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
+        return {
+            trace: actions
+        }
+    };
+    public static purge = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
+        return {
+            purge: actions
         }
     };
 }

@@ -13,4 +13,3 @@ function Routes(dirname, routes) {
     return router;
 }
 exports.default = Routes;
-//# sourceMappingURL=Routes.js.map
