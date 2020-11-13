@@ -1,9 +1,9 @@
 import * as path from "path";
 import { Request, Response, NextFunction } from "express";
 
-type Methods = "get" | "post" | "patch" | "put" | "delete";
+type Methods = "get" | "post" | "patch" | "put" | "update" | "delete";
 
-const methods: Methods[] = ["get", "post", "patch", "put", "delete"];
+const methods: Methods[] = ["get", "post", "patch", "put", "update", "delete"];
 
 function routePath(sourceDir: string, methodPath: string): any {
     let filePath = methodPath.replace(/:\w+(\/|)/gi,"");
@@ -19,9 +19,7 @@ function routePath(sourceDir: string, methodPath: string): any {
                     if (typeof apiFunction[method][0] === "function"){
                         apiFunction[method][0](req, res, next);
                     } else if (Array.isArray(apiFunction[method][0])){
-                        apiFunction[method][0].forEach((handlers) => {
-                            handlers(req, res, next);
-                        });
+                        execHandler(apiFunction[method][0], req, res, next);
                     }
                 } else {
                     next();
@@ -45,6 +43,21 @@ function routePath(sourceDir: string, methodPath: string): any {
             }
         }
     ]
+}
+
+function execHandler(handlers, req: Request, res: Response, next: NextFunction){
+    let i = 0;
+    function exec(){
+        handlers[i](req, res, () => {
+            if (handlers.length === (i + 1)){
+                next();
+            } else {
+                i++;
+                exec();
+            }
+        });
+    }
+    exec();
 }
 
 function methodValid(func: any): boolean {

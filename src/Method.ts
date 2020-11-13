@@ -5,6 +5,7 @@ interface MethodFunction {
     post?: (any[] | any)[],
     patch?: (any[] | any)[],
     put?: (any[] | any)[],
+    update?: (any[] | any)[],
     delete?: (any[] | any)[],
 }
 
@@ -48,6 +49,15 @@ export default class Method {
         }
         return {
             put: actions
+        }
+    };
+    public static update = (params: MethodParams): MethodFunction => {
+        let actions: Array<Function | Function[]> = [ params.action ];
+        if (params.handlers){
+            actions.unshift(params.handlers);
+        }
+        return {
+            update: actions
         }
     };
     public static delete = (params: MethodParams): MethodFunction => {

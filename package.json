@@ -1,9 +1,19 @@
 {
   "name": "@aurotones/express-tree-route",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Tree route for cleaner, short and easy to find solution to Express routing.",
   "main": "dist/index.js",
   "private": false,
+  "keywords": [
+    "express",
+    "typescript",
+    "node",
+    "nodejs",
+    "api",
+    "route",
+    "tree route",
+    "tree routing"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

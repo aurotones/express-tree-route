@@ -36,9 +36,7 @@ function routePath(sourceDir, methodPath) {
                         apiFunction[method][0](req, res, next);
                     }
                     else if (Array.isArray(apiFunction[method][0])) {
-                        apiFunction[method][0].forEach((handlers) => {
-                            handlers(req, res, next);
-                        });
+                        execHandler(apiFunction[method][0], req, res, next);
                     }
                 }
                 else {
@@ -66,6 +64,21 @@ function routePath(sourceDir, methodPath) {
             }
         }
     ];
+}
+function execHandler(handlers, req, res, next) {
+    let i = 0;
+    function exec() {
+        handlers[i](req, res, () => {
+            if (handlers.length === (i + 1)) {
+                next();
+            }
+            else {
+                i++;
+                exec();
+            }
+        });
+    }
+    exec();
 }
 function methodValid(func) {
     let valid = false;
