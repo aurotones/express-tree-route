@@ -39,7 +39,7 @@ routes.js
 ```
 - See below example to configure API method in `login.js`, `get.js`, `post.js` files.
 
-Depending on what method you want to use, you can declare your method like below.
+You can declare your method like below.
 Currently delete missing.
 
 ```
