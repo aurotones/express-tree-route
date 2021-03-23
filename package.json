@@ -1,6 +1,6 @@
 {
   "name": "@aurotones/express-tree-route",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Tree route for cleaner, short and easy to find solution to Express routing.",
   "main": "dist/index.js",
   "private": false,

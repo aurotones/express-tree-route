@@ -48,14 +48,18 @@ function routePath(sourceDir: string, methodPath: string): any {
 function execHandler(handlers, req: Request, res: Response, next: NextFunction){
     let i = 0;
     function exec(){
-        handlers[i](req, res, () => {
-            if (handlers.length === (i + 1)){
-                next();
-            } else {
-                i++;
-                exec();
-            }
-        });
+        if (handlers.length === 0){
+            next()
+        } else {
+            handlers[i](req, res, () => {
+                if (handlers.length === (i + 1)){
+                    next();
+                } else {
+                    i++;
+                    exec();
+                }
+            });
+        }
     }
     exec();
 }
